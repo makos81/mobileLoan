@@ -12,11 +12,16 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "loan_terms")
+@Table(name = "LOAN_TERMS")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@NamedNativeQuery(
+        name = "LoanTerms.getLatestTerm",
+        query = "SELECT * FROM LOAN_TERMS ORDER BY loan_term_creation_datetime desc limit 1",
+        resultClass = LoanTerms.class
+)
 public class LoanTerms {
     @Id
     @GeneratedValue

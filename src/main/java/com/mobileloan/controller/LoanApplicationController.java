@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("v1/loanApplication")
-public class loanApplicationController {
+public class LoanApplicationController {
 
 
 }

@@ -30,7 +30,6 @@ public class LoanTermsRepositoryTestSuite {
         LocalDateTime loanTermCreationDatetime = LocalDateTime.now();
         LoanTerms loanTerms = new LoanTerms(loanTermId, minLoanAmount, maxLoanAmount, interestRate,
                 minMonthsLoanDuration, maxMonthsLoanDuration, loanTermCreationDatetime);
-        long expectedLoanTermId = 1;
 
          //when
         loanTermsRepository.save(loanTerms);
