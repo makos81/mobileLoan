@@ -1,0 +1,9 @@
+Business requirments:
+- define max/min amount and max/min term (days)
+
+Available operations are:
+- apply_for_loan (term, amount)
+- if application is not within amount/term range reject application
+- if application is between 00:00 and 06:00 and max amount is asked then reject application
+- cost of the issued loan is 10% of principal (not 10% per year)
+- extend loan - (extension term is preconfigured. Upon extension the due date is changed, original due date + term)

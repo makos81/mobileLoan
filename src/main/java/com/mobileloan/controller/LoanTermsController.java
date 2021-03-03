@@ -37,7 +37,7 @@ public class LoanTermsController {
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "updateLoanTerms")
-    public LoanTermsDto updateLoanTerms(@RequestParam LoanTermsDto loanTermsDto){
+    public LoanTermsDto updateLoanTerms(@RequestBody LoanTermsDto loanTermsDto){
             LoanTerms updatedLoanTerms = loanTermsService.saveLoanTerms(loanTermsDto);
             return loanTermsMapper.mapToDto(updatedLoanTerms);
     }
