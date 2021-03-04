@@ -30,6 +30,10 @@ public class LoanData {
     private boolean isGrantedLoan;
     @Column(name = "APPLICATION_REJECTION_REASON")
     private String applicationForALoanRejectionReason;
+    @Column(name = "LOAN_START")
+    private LocalDateTime loanStartDateTime;
+    @Column(name = "LOAN_DUE")
+    private LocalDateTime loanDueDate;
 
     public LoanData(int id, int loanTerm, int loanAmount, LocalDateTime loanApplicationDateTime) {
         this.id = id;
@@ -48,5 +52,13 @@ public class LoanData {
 
     public void setIsGrantedLoan(boolean isGrantedLoan) {
         this.isGrantedLoan = isGrantedLoan;
+    }
+
+    public void setLoanStartDateTime(LocalDateTime loanStartDateTime) {
+        this.loanStartDateTime = loanStartDateTime;
+    }
+
+    public void setLoanDueDate(LocalDateTime loanDueDate) {
+        this.loanDueDate = loanDueDate;
     }
 }

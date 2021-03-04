@@ -6,10 +6,16 @@ import com.mobileloan.service.LoanTermsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Calendar;
+
 @Component
 public class LoanApplicationValidator {
     @Autowired
     private LoanTermsService loanTermsService;
+    private final int INACTIVITY_START_TIME = 0;
+    private final int INACTIVITY_END_TIME = 6;
 
     private boolean validateTermLength(int term){
         return term > 1;
@@ -42,12 +48,20 @@ public class LoanApplicationValidator {
                 && validateTermBetweenMinAndMaxPossibleTerm(loanData.getLoanTerm());
     }
 
-    public boolean validateLoan(LoanData loanData) throws LoanApplicationDoesntMeetLoanTermsException, WrongLoanDataException{
+    private boolean validateLoanApplicationTimeVersusInactivityTime(LocalDateTime localDateTime){
+        return localDateTime.getHour() <= this.INACTIVITY_END_TIME && localDateTime.getHour() >= this.INACTIVITY_START_TIME;
+    }
+
+    public boolean validateLoan(LoanData loanData) throws LoanApplicationDoesntMeetLoanTermsException,
+            WrongLoanDataException, LoanApplicationDuringInactivityHoursException{
         if(!validateLoanApplication(loanData)){
             throw new WrongLoanDataException();
         }
         if(!validateLoanApplicationVersusTerms(loanData)){
             throw new LoanApplicationDoesntMeetLoanTermsException();
+        }
+        if(!validateLoanApplicationTimeVersusInactivityTime(LocalDateTime.now())){
+            throw new LoanApplicationDuringInactivityHoursException();
         }
         return true;
     }

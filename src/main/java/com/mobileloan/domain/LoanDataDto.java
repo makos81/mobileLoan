@@ -1,13 +1,8 @@
 package com.mobileloan.domain;
 
-import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import java.time.LocalDateTime;
 
 @Getter
@@ -20,4 +15,6 @@ public class LoanDataDto {
     private LocalDateTime loanApplicationDateTime;
     private boolean isGrantedLoan;
     private String applicationForALoanRejectionReason;
+    private LocalDateTime loanStartDateTime;
+    private LocalDateTime loanDueDate;
 }
